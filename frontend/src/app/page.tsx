@@ -4,20 +4,39 @@ import { useEffect, useState } from 'react';
 export default function Home() {
   const [cryptos, setCryptos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    const BACKEND_URL = 'https://fantastic-goldfish-qv7gxq6x5j7r29wq6-5000.app.github.dev'; 
+    // Ab API same domain par hai, isliye empty string
+    const BACKEND_URL = ''; 
     
     fetch(`${BACKEND_URL}/api/crypto/top10`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to fetch');
+        return res.json();
+      })
       .then((data) => {
         setCryptos(data);
         setLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setError('Failed to load crypto data');
+        setLoading(false);
+      });
   }, []);
 
-  if (loading) return <div className="p-10 text-white text-center">Loading crypto data...</div>;
+  if (loading) return (
+    <div className="flex min-h-screen items-center justify-center bg-gray-900">
+      <div className="text-white text-xl">Loading crypto data...</div>
+    </div>
+  );
+
+  if (error) return (
+    <div className="flex min-h-screen items-center justify-center bg-gray-900">
+      <div className="text-red-400 text-xl">{error}</div>
+    </div>
+  );
 
   return (
     <main className="flex min-h-screen flex-col items-center p-10 bg-gray-900">
