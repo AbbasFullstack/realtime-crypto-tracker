@@ -1,12 +1,12 @@
+![Header](https://capsule-render.vercel.app/api?type=waving&height=230&section=header&text=Real-Time%20Crypto%20Tracker&fontSize=46&fontColor=ffffff&animation=twinkling&desc=Live%20Prices%20%E2%80%A2%20Interactive%20Charts%20%E2%80%A2%20Binance%20WebSocket&descAlignY=72&color=gradient&customColorList=10)
+
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&weight=600&size=26&pause=1000&color=F7931A&center=true&vCenter=true&width=800&lines=Real-Time+Crypto+Tracker;Live+Prices+via+Binance+WebSocket;Interactive+Charts+%26+Market+Data;Built+Entirely+on+a+Mobile+Phone" alt="Typing SVG"/>
-
-# 🚀 Real-Time Crypto Tracker
+<img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&weight=600&size=24&pause=1000&color=F7931A&center=true&vCenter=true&width=700&lines=Live+Prices+via+Binance+WebSocket;Interactive+Charts+%26+Market+Data;Built+Entirely+on+a+Mobile+Phone" alt="Typing SVG"/>
 
 **Live cryptocurrency dashboard — real-time prices, interactive charts & detailed market data**
 
-[![LIVE DEMO](https://img.shields.io/badge/▲_LIVE_DEMO-crypto_tracker.vercel.app-orange?style=for-the-badge&logo=vercel&logoColor=white)](https://realtime-crypto-tracker.vercel.app)
+[![LIVE DEMO](https://img.shields.io/badge/🚀_LIVE_DEMO-realtime--crypto--tracker.vercel.app-orange?style=for-the-badge&logo=vercel&logoColor=white)](https://realtime-crypto-tracker.vercel.app)
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
@@ -106,7 +106,7 @@ realtime-crypto-tracker/
 
 ---
 
-## 👨💻 About the Developer
+## 👨‍💻 About the Developer
 
 <div align="center">
 
@@ -122,7 +122,9 @@ realtime-crypto-tracker/
 > 💻 Next.js • TypeScript • Tailwind • REST & WebSocket APIs
 > 📱 **Fun fact:** this entire project was built using only a mobile phone (GitHub Codespaces + Termux)!
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=AbbasFullstack&show_icons=true&theme=tokyonight&hide_border=true&border_radius=12)
+### 📊 Development Activity
+
+![Contribution Graph](https://ghchart.rshah.org/F7931A/AbbasFullstack)
 
 </div>
 
@@ -139,3 +141,5 @@ realtime-crypto-tracker/
 ⭐ *Star this repo if you find it helpful!*
 
 </div>
+
+![Footer](https://capsule-render.vercel.app/api?type=wave&height=110&section=footer&color=gradient&customColorList=10)
