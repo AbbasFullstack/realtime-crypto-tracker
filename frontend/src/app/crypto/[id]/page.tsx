@@ -82,7 +82,8 @@ export default function CryptoDetail() {
   useEffect(() => {
     if (!crypto) return;
     const symbol = crypto.symbol.toLowerCase();
-    const ws = new WebSocket(`wss://stream.binance.com:9443/ws/${symbol}usdt@ticker`);
+    // data-stream.binance.vision: public market-data WebSocket (geo-block nahi hota)
+    const ws = new WebSocket(`wss://data-stream.binance.vision/ws/${symbol}usdt@ticker`);
 
     ws.onopen = () => setWsConnected(true);
     ws.onmessage = (event) => {
