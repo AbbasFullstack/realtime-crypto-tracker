@@ -6,7 +6,7 @@
 
 **Live cryptocurrency dashboard — real-time prices, interactive charts & detailed market data**
 
-[![LIVE DEMO](https://img.shields.io/badge/▲_LIVE_DEMO-crypto_tracker.vercel.app-orange?style=for-the-badge&logo=vercel&logoColor=white)](https://crypto-tracker.vercel.app)
+[![LIVE DEMO](https://img.shields.io/badge/▲_LIVE_DEMO-crypto_tracker.vercel.app-orange?style=for-the-badge&logo=vercel&logoColor=white)](https://realtime-crypto-tracker.vercel.app)
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
