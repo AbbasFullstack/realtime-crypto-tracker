@@ -3,7 +3,10 @@ import { NextResponse } from 'next/server';
 // Binance par kaunse coins available hain, yeh list deta hai (1 ghante ke liye cached)
 export async function GET() {
   try {
-    const res = await fetch('https://api.binance.com/api/v3/exchangeInfo', {
+    // data-api.binance.vision: Binance ka public market-data endpoint
+    // (api.binance.com Vercel/US servers ko block karta hai - error 451)
+    // showPermissionSets=false + symbolStatus=TRADING se response 23MB se ~1MB ho jata hai (cache ho sakta hai)
+    const res = await fetch('https://data-api.binance.vision/api/v3/exchangeInfo?showPermissionSets=false&symbolStatus=TRADING', {
       next: { revalidate: 3600 }
     });
 

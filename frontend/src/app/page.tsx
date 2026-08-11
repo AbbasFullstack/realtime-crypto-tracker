@@ -27,10 +27,12 @@ export default function Home() {
   const [listLive, setListLive] = useState(false);
   const [streamSymbols, setStreamSymbols] = useState<string[]>([]);
   const pendingRef = useRef<Record<string, Partial<Crypto>>>({});
+  const hasLoadedRef = useRef(false);
 
   const fetchData = async () => {
     try {
-      setLoading(true);
+      // Sirf pehli baar loading dikhayein, refresh par list gayab na ho
+      if (!hasLoadedRef.current) setLoading(true);
       const res = await fetch('/api/crypto/top10');
       if (!res.ok) throw new Error('Failed to fetch');
       
@@ -43,6 +45,7 @@ export default function Home() {
       setCryptos(data);
       setLastUpdated(new Date().toLocaleTimeString());
       setError('');
+      hasLoadedRef.current = true;
       // Sirf pehli baar symbols save karein (WebSocket ke liye)
       setStreamSymbols(prev => prev.length === 0 ? data.map((c: Crypto) => c.symbol) : prev);
     } catch (err) {
@@ -66,19 +69,27 @@ export default function Home() {
 
     const setup = async () => {
       try {
-        const res = await fetch('/api/binance/symbols');
-        if (!res.ok) return;
-        const valid: string[] = await res.json();
+        // Valid symbols laane ki koshish karein, fail ho to sab subscribe kar dein
+        // (Binance invalid streams ko chupchaap ignore kar deta hai)
+        let symbolsToUse = streamSymbols;
+        try {
+          const res = await fetch('/api/binance/symbols');
+          if (res.ok) {
+            const valid: string[] = await res.json();
+            if (Array.isArray(valid) && valid.length > 0) {
+              const validSet = new Set(valid.map(v => v.toUpperCase()));
+              const filtered = streamSymbols.filter(s => validSet.has(s.toUpperCase()));
+              if (filtered.length > 0) symbolsToUse = filtered;
+            }
+          }
+        } catch {}
         if (cancelled) return;
-        
-        const validSet = new Set(valid.map(v => v.toUpperCase()));
-        const streams = streamSymbols
-          .filter(s => validSet.has(s.toUpperCase()))
-          .map(s => `${s.toLowerCase()}usdt@miniTicker`);
-        
+
+        const streams = symbolsToUse.map(s => `${s.toLowerCase()}usdt@miniTicker`);
         if (streams.length === 0) return;
-        
-        ws = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${streams.join('/')}`);
+
+        // data-stream.binance.vision: public market-data WebSocket (geo-block nahi hota)
+        ws = new WebSocket(`wss://data-stream.binance.vision/stream?streams=${streams.join('/')}`);
         ws.onopen = () => setListLive(true);
         ws.onclose = () => setListLive(false);
         ws.onerror = () => setListLive(false);

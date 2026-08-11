@@ -12,8 +12,10 @@ export async function GET(request: Request) {
     
     const pair = `${symbol}USDT`;
     
+    // data-api.binance.vision: Binance ka public market-data endpoint
+    // (api.binance.com Vercel/US servers ko block karta hai - error 451)
     const response = await fetch(
-      `https://api.binance.com/api/v3/klines?symbol=${pair}&interval=${interval}&limit=${limit}`,
+      `https://data-api.binance.vision/api/v3/klines?symbol=${pair}&interval=${interval}&limit=${limit}`,
       { next: { revalidate: 60 } }
     );
 
